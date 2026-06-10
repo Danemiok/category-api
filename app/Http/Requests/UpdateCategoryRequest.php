@@ -6,11 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreCategoryRequest extends FormRequest
+class UpdateCategoryRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true;
+        return true; // ← MUST BE true NOT false
     }
 
     public function rules(): array
@@ -30,7 +30,6 @@ class StoreCategoryRequest extends FormRequest
         ];
     }
 
-    // Return JSON error instead of redirect
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

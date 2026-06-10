@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 
@@ -49,7 +49,7 @@ class CategoryController extends Controller
     }
 
     // PUT /api/categories/{id}
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category) // ← FIX THIS
     {
         $category->update([
             'name'        => $request->name,
