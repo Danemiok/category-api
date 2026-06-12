@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryViewController; // ← Web controller
+use App\Http\Controllers\ProductViewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,3 +9,4 @@ Route::get('/', function () {
 });
 
 Route::resource('categories', CategoryViewController::class);
+Route::resource('products', ProductViewController::class);  

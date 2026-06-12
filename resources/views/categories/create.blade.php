@@ -1,61 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Category</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 min-h-screen p-8">
+@extends('layouts.app')
 
-    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow p-6">
+@section('title', 'Add Category')
 
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-xl font-semibold text-gray-700">Add Categories</h2>
-            <a href="{{ route('categories.index') }}"
-               class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg">
-                Back
-            </a>
-        </div>
+@section('content')
 
-        <form action="{{ route('categories.store') }}" method="POST">
-            @csrf
+<div class="max-w-3xl bg-white rounded-xl shadow p-6">
 
-            {{-- Name --}}
-            <div class="mb-4">
-                <label class="block text-sm text-gray-600 mb-1">Name</label>
-                <input type="text" name="name" value="{{ old('name') }}"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
-                @if($errors->has('name'))
-                    <p class="text-red-500 text-xs mt-1">{{ $errors->first('name') }}</p>
-                @endif
-            </div>
-
-            {{-- Description --}}
-            <div class="mb-4">
-                <label class="block text-sm text-gray-600 mb-1">Description</label>
-                <textarea name="description" rows="4"
-                          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">{{ old('description') }}</textarea>
-                @if($errors->has('description'))
-                    <p class="text-red-500 text-xs mt-1">{{ $errors->first('description') }}</p>
-                @endif
-            </div>
-
-            {{-- Is Active --}}
-            <div class="mb-6 flex items-center gap-2">
-                <input type="checkbox" name="is_active" id="is_active" value="1"
-                       {{ old('is_active') ? 'checked' : '' }}
-                       class="w-4 h-4 text-blue-600">
-                <label for="is_active" class="text-sm text-gray-600">Is Active</label>
-            </div>
-
-            <button type="submit"
-                    class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-6 py-2 rounded-lg">
-                Save
-            </button>
-        </form>
-
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-700">Add Categories</h2>
+        <a href="{{ route('categories.index') }}"
+           class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg">
+            Back
+        </a>
     </div>
 
-</body>
-</html>
+    <form action="{{ route('categories.store') }}" method="POST">
+        @csrf
+
+        <div class="mb-4">
+            <label class="block text-sm text-gray-600 mb-1">Name</label>
+            <input type="text" name="name" value="{{ old('name') }}"
+                   class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+            @if($errors->has('name'))
+                <p class="text-red-500 text-xs mt-1">{{ $errors->first('name') }}</p>
+            @endif
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm text-gray-600 mb-1">Description</label>
+            <textarea name="description" rows="4"
+                      class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">{{ old('description') }}</textarea>
+            @if($errors->has('description'))
+                <p class="text-red-500 text-xs mt-1">{{ $errors->first('description') }}</p>
+            @endif
+        </div>
+
+        <div class="mb-6 flex items-center gap-2">
+            <input type="checkbox" name="is_active" id="is_active" value="1"
+                   {{ old('is_active') ? 'checked' : '' }}
+                   class="w-4 h-4 text-blue-600">
+            <label for="is_active" class="text-sm text-gray-600">Is Active</label>
+        </div>
+
+        <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-6 py-2 rounded-lg">
+            Save
+        </button>
+    </form>
+
+</div>
+
+@endsection

@@ -3,22 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Expr\FuncCall;
 
-class Category extends Model
+class Product extends Model
 {
     protected $fillable = [
+        'category_id',
         'name',
         'description',
+        'price',
+        'stock',
         'is_active',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'price'     => 'decimal:2',
     ];
 
-    public function products()
+    public function category()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Category::class);
     }
 }
